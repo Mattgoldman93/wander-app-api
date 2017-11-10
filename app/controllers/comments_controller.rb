@@ -1,5 +1,5 @@
 class CommentsController < OpenReadController
-  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :set_comment, only: [:update, :destroy]
 
   # GET /comments
   def index
@@ -42,7 +42,7 @@ class CommentsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = current_user.comments.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
