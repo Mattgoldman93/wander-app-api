@@ -2,9 +2,9 @@
 
 Wander is a ~~social network~~ blogging platform that intends to give travellers a place to share their travels, suggestions and experiences with a community of fellow explorers. Blog posts may be commented on and all CRUD actions are possible. For this iteration, comments may only be created.  As of right now, these are the only features [but there will be many more to come](#future-releases)
 
-[Link to API deployed via Heroku](https://dreadful-citadel-51922.herokuapp.com/)
-[Link to Client deployed via GH pages](https://mattgoldman93.github.io/wander-app-client/#/posts)
-[Link to client repo](https://github.com/Mattgoldman93/wander-app-client)
+- [Link to API deployed via Heroku](https://dreadful-citadel-51922.herokuapp.com/)
+- [Link to Client deployed via GH pages](https://mattgoldman93.github.io/wander-app-client/#/posts)
+- [Link to client repo](https://github.com/Mattgoldman93/wander-app-client)
 
 ![](wanderSS.png)
 ## Development Process
@@ -12,7 +12,9 @@ Wander is a ~~social network~~ blogging platform that intends to give travellers
 
   To build the back-end, I attempted to loosely follow [this blog post](https://medium.com/rails-ember-beyond/how-to-build-a-social-network-using-rails-eb31da569233). It outlined and explained implementing several ruby gems including [carrierwave](https://github.com/carrierwaveuploader/carrierwave) for attaching files to posts, [acts_as_votable](https://github.com/ryanto/acts_as_votable) for implementing 'likes' on posts, and [acts_as_commentable](https://github.com/jackdempsey/acts_as_commentable) for comments. The guide did not prove useful for my purposes and I could not figure out how to properly implement these gems.
   The first day was spent following this guide while setting up the back end. The result was many unused files and unecessary migrations, which led to some difficulties when deploying to heroku. The back end was mostly complete by the end of the first day. The second day was primarily spent on hooking up the front end. Day three was spent mainly trying to allow users to post photos, I decided not to user carrier wave and instead use an ember add on. On the backend, though, I needed to integrate S3 as well as a sign route to validate the uploads. I was not able to get this working. Later, I needed to create a couple of migrations in order to add a title section to posts and also reference comments when that table was created on day 4.
+
   A lot of time was spent on days 5 and 6 trying to get comments to be stored with all the needed information. I was trying to solve this by making tweeks on the front end but, as it turned out, the problem was with the serializer. The serializer was returning the entire post object under comments and an array of entire comment objects within posts. This was solved by having the post serializer pluck the comment ids and having comments store only the post id. On day 4 I had also generated files for a favorites feature that would let users save and access their favorite posts. I later opted to focus on a comments feature (built without acts_as_commentable) instead. I do plan to implement the favorites feature in the future but for now the contents of those files are commented out.
+
   ## Technologies used
   Technologies used included Ruby on Rails and Heroku. More technologies will be added in the future to improve functionality. As it stands, however, there are no dependencies necessary.
 
@@ -34,4 +36,4 @@ Wander is a ~~social network~~ blogging platform that intends to give travellers
   | POST   | `/posts`  | `post#create`  |
   | PUT   | `/posts/:id`  | `post#update` |
   | DELETE   | `/posts/:id`  | `uploads#destroy` |
-  | POST   |  `/comments`  |  `comments#create` |   
+  | POST   |  `/comments`  |  `comments#create` |
