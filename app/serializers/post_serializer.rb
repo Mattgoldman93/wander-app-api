@@ -9,5 +9,4 @@ class PostSerializer < ActiveModel::Serializer
   def comments
     object.comments.pluck(:id)
   end
-
 end
